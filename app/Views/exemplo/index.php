@@ -1,2 +1,2 @@
-<h1><?= $dados['nome']; ?></h1>
-<p>Versão: <?= $dados['versao']; ?></p>
+<h1><?= $data['name']; ?></h1>
+<p>Versão: <?= $data['version']; ?></p>

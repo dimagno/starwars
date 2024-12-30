@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Controllers;
-use App\Models\HomeModel;
+use App\Models\Home;
 
  class HomeController {
-    public function show(){
-        $homeModel = new HomeModel();
+    public function index(){
+        $homeModel = new Home();
         $data = $homeModel->getInfo();
-        require_once '../app/Views/exemplo/index.php';
+        require_once __DIR__ . '/../Views/exemplo/index.php';
+
     }
  }

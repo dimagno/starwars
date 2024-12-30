@@ -3,6 +3,6 @@
  class Home{
 
     public function getInfo(){
-        return ['nome'=> ' Star Wars', 'version'=> '1.0'];
+        return ['name'=> ' Star Wars', 'version'=> '1.0'];
     }
  }
