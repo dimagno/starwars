@@ -1,6 +1,7 @@
 <?php
 
 require_once 'bootstrap.php';
+
 function my_autoloader($class) {
     // Converte o namespace em caminho para o arquivo
     $class = str_replace('\\', DIRECTORY_SEPARATOR, $class);  // Substitui \ por /
@@ -19,7 +20,7 @@ function my_autoloader($class) {
 
 // Registra a função de autoload
 spl_autoload_register('my_autoloader');
-
+define('BASE_URL', 'starwars/public/');
 // Obtém apenas o caminho da URL e remove a barra no final, se houver
 $url = rtrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
