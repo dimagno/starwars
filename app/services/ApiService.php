@@ -1,14 +1,20 @@
 <?php
-class ServiceApi{
+
+namespace app\Controllers\Services;
+
+class ServiceApi
+{
     private $baseUrl;
 
-    public function __construct(){
-        $this->baseUrl ='https://swapi-node.vercel.app/';
-
+    public function __construct()
+    {
+        $this->baseUrl = 'https://swapi-node.vercel.app/api/';
     }
-    private function fetchData($endpoint) {
+
+    private function fetchData($endpoint)
+    {
         // Monta a URL completa
-        $url = $this->baseUrl . $endpoint . '/';
+        $url = $this->baseUrl . $endpoint;
 
         // Inicializa cURL
         $curl = curl_init($url);
@@ -19,47 +25,51 @@ class ServiceApi{
 
         // Verifica se houve erro na requisição
         if (curl_errno($curl)) {
-            throw new Exception("Erro ao acessar a API externa: " . curl_error($curl));
+            throw new \Exception("Erro ao acessar a API externa: " . curl_error($curl));
         }
 
         curl_close($curl);
 
-        // Retorna os dados como array associativo
-        return json_decode($response, true);
-    }
-    public function getAllPeoples() {
-        return $this->fetchData('people');
-    }
-    public function getPeole($id){
-        return $this->fetchData('people/'.$id);
+        // Decodifica o JSON em um array associativo
+        $decodedResponse = json_decode($response, true);
 
+        // Verifica se a resposta contém dados válidos
+        if (isset($decodedResponse['fields'])) {
+            return $decodedResponse['fields'];
+        } elseif (isset($decodedResponse['results'])) {
+            return $decodedResponse['results'];
+        } else {
+            throw new \Exception("Resposta inválida da API.");
+        }
     }
-    public function getAllVehicles() {
-        return $this->fetchData('vehicles');
-    }
-    public function getVehicle($id){
-        return $this->fetchData('vehicles/'.$id);
-    }
-    public function getAllPlanets(){
-        return $this->fetchData('planets');
-    }
-    public function getPlanet($id){
-        return $this->fetchData('planets/'.$id)
-;
-    }
-    public function getAllMovies(){
+
+    public function getAllMovies()
+    {
         return $this->fetchData('films');
     }
-    public function getMovie($id){
-        
-        return $this->fetchData('films/'.$id);
-    }
-    public function getAllSpecies(){
-        return $this->fetchData('species');
-    }
-    public function getSpecie($id){
-        
-        return $this->fetchData('species/'.$id);
+
+    public function getMovie($id)
+    {
+        return $this->fetchData('films/' . $id);
     }
 
+    public function getCharacter($id)
+    {
+        return $this->fetchData('people/' . $id);
+    }
+
+    public function getAllCharacters()
+    {
+        return $this->fetchData('people');
+    }
+
+    public function getAllPlanets()
+    {
+        return $this->fetchData('planets');
+    }
+
+    public function getPlanet($id)
+    {
+        return $this->fetchData('planets/' . $id);
+    }
 }
