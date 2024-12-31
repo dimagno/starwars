@@ -15,7 +15,6 @@ class Config
     private function load()
     {
         $this->config = [
-            'API_KEY' => getenv('API_KEY'), 
             'DB_HOST' => getenv('DB_HOST'),
             'DB_USER' => getenv('DB_USER'),
             'DB_PASS' => getenv('DB_PASS'),
