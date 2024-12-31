@@ -34,7 +34,6 @@
    <h2>Parallax scrolling effects</h2>
    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit accusantium ad, aut nam corporis, maiores nostrum consequuntur consectetur voluptatem dolores officiis atque quam quidem ab ex, neque magni quia amet
    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit accusantium ad, aut nam corporis, maiores nostrum consequuntur consectetur voluptatem dolores officiis atque quam quidem ab ex, neque magni quia amet.
-   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit accusantium ad, aut nam corporis, maiores nostrum consequuntur consectetur voluptatem dolores officiis atque quam quidem ab ex, neque magni quia amet
    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit accusantium ad, aut nam corporis, maiores nostrum consequuntur consectetur voluptatem dolores officiis atque quam quidem ab ex, neque magni quia amet</p>
 </div>
  </body>
