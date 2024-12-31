@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'StarJedi';
+    src: url('../fonts/Starjedi.ttf') format('truetype');
+}
 *{
     margin: 0;
     padding: 0;
@@ -21,6 +25,10 @@ header{
     align-items: center;
     z-index: 10000;
 }
+header ul li a, header a{
+    
+    font-family: 'StarJedi';
+}
 header .logo{
     color:#fff;
     font-weight: 700;
@@ -37,6 +45,7 @@ header ul{
 header ul li {
     list-style: none;
     margin-left: 20px;
+    
 }
 header ul li a {
     text-decoration: none;
@@ -58,6 +67,10 @@ section {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+}
+section h2 {
+    
+    font-family: 'StarJedi';
 }
 section::before{
     content:'';
@@ -113,10 +126,12 @@ z-index:9;
     font-size: 3.5em;
     margin-bottom: 10px;
     color:#fff;
+    text-align: center;
 }
 .sec p {
     font-size: 1.2em;
     color:#fff;
+    text-align: center;
 }
 .conteudo{  
     visibility: hidden;

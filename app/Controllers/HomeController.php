@@ -7,7 +7,11 @@ use App\Models\Home;
     public function index(){
         $homeModel = new Home();
         $data = $homeModel->getInfo();
-        require_once __DIR__ . '/../Views/exemplo/index.php';
+        require_once __DIR__ . '/../Views/index.php';
 
     }
+    public function sobre(){
+        echo "VIEW 'SOBRE' EM DESENVOLVIMENTO";
+     
  }
+}

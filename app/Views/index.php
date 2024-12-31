@@ -13,12 +13,12 @@
 
  <body>
    <header>
-      <a href="#" class ="logo">Logo</a>
+      <a href="#" class ="logo">D. MAGN0</a>
       <ul>
          <li><a href="#" class="active">Home</a></li>
-         <li><a href="#">About</a></li>
-         <li><a href="#">Contact</a></li>
-         <li><a href="#">More</a></li>
+         <li><a href="#">Movies</a></li>
+         <li><a href="#">characters</a></li>
+         <li><a href="#">contact</a></li>
       </ul>
    </header>
    <section>
@@ -31,10 +31,13 @@
       <img src="public/imgs/mountains_front.png" class="mountain-f" alt="">
    </section>
 <div class="sec">
-   <h2>Parallax scrolling effects</h2>
-   <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit accusantium ad, aut nam corporis, maiores nostrum consequuntur consectetur voluptatem dolores officiis atque quam quidem ab ex, neque magni quia amet
-   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit accusantium ad, aut nam corporis, maiores nostrum consequuntur consectetur voluptatem dolores officiis atque quam quidem ab ex, neque magni quia amet.
-   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit accusantium ad, aut nam corporis, maiores nostrum consequuntur consectetur voluptatem dolores officiis atque quam quidem ab ex, neque magni quia amet</p>
+   <h2>Bem vindos</h2>
+   <p>   
+Este é o seu ponto de acesso ao universo fascinante de Star Wars. Explore cada detalhe de uma das maiores sagas da história: dos filmes que moldaram a cultura pop, aos personagens inesquecíveis que enfrentaram dilemas entre luz e escuridão. Descubra os planetas que abrigam civilizações únicas, as naves e veículos que cruzam a galáxia, e os elementos que tornam este universo tão vasto e intrigante.
+
+A jornada começa aqui. Mergulhe na história, na mitologia e nos detalhes de Star Wars, e permita-se explorar cada canto de uma galáxia muito, muito distante.
+
+</p>
 </div>
  </body>
  </html>
