@@ -1,8 +1,20 @@
 $(document).ready(function(){
- fetch('https://swapi-node.vercel.app/films').then((data)=>{
-        console.log('dados:'+data)
-    }).catch((error)=>{
-        console.log("erro :"+error)
+    fetch('https://swapi-node.now.sh/api/films')
+    .then((response) => {
+      // Verifica se a resposta foi bem-sucedida (status 200-299)
+      if (!response.ok) {
+        throw new Error(`Erro HTTP: ${response.status}`);
+      }
+      return response.json();  // Converte o corpo da resposta para JSON
+    })
+    .then((data) => {
+      const newData = JSON.stringify(data); // Converte os dados para string, se necessário
+      const numProperties = Object.keys(data).length; // Conta o número de propriedades no objeto
+      console.log('dados Teste 3:', newData);
+      console.log('total 3:', numProperties);
+    })
+    .catch((error) => {
+      console.log('erro:', error);  // Captura qualquer erro no processo
     });
     
     let stars = $('.stars');

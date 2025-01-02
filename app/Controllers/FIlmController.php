@@ -2,7 +2,7 @@
 
 namespace app\Controllers;
 
-use app\Controllers\Services\ServiceApi;
+use app\Services\ApiService ;
 
 class FilmController
 {
@@ -10,7 +10,7 @@ class FilmController
 
     public function __construct()
     {
-        $this->serviceApi = new ServiceApi();
+        $this->serviceApi = new ApiService();
     }
 
     // Endpoint para listar todos os filmes
@@ -18,10 +18,23 @@ class FilmController
     {
         try {
             $films = $this->serviceApi->getAllMovies();
-
             if (empty($films)) {
                 throw new \Exception("Nenhum filme encontrado.");
             }
+            $filteredData = array_map(function($item) {
+                return array(
+                    "title" => $item["fields"]["title"],
+                    "description" => $item["fields"]["opening_crawl"],
+                    "release_date" => $item["fields"]["release_date"],
+                    "characters" => $item["fields"]["characters"],
+                    "director" => $item["fields"]["director"],
+                    "producer" => $item["fields"]["producer"],
+                    'episode_id' =>$item['fields']['episode_id']
+                );
+            }, $films);
+            return json_encode($filteredData);
+           
+      
 
             // Ordenar os filmes por data de lançamento
             usort($films, function ($a, $b) {
@@ -29,13 +42,13 @@ class FilmController
             });
 
             // Retorna a lista de filmes em formato JSON
-            echo json_encode([
+            return json_encode([
                 'status' => 'success',
                 'data' => $films
             ]);
         } catch (\Exception $e) {
             // Captura erros e retorna como JSON
-            echo json_encode([
+            return json_encode([
                 'status' => 'error',
                 'message' => $e->getMessage()
             ]);
@@ -67,13 +80,13 @@ class FilmController
             ];
 
             // Retorna a idade do filme em formato JSON
-            echo json_encode([
+            return json_encode([
                 'status' => 'success',
                 'data' => $filmAge
             ]);
         } catch (\Exception $e) {
             // Captura erros e retorna como JSON
-            echo json_encode([
+            return json_encode([
                 'status' => 'error',
                 'message' => $e->getMessage()
             ]);

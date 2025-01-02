@@ -1,8 +1,8 @@
 <?php
 
-namespace app\Controllers\Services;
+namespace app\Services;
 
-class ServiceApi
+class ApiService
 {
     private $baseUrl;
 
