@@ -1,15 +1,17 @@
 <?php
 
 namespace app\Services;
-
-class ApiLogger
+use app\Database\Connection;
+class ServiceLog
 {
     private string $logFile;
+    private $conection;
 
     public function __construct(string $logFileName = 'api_logs.txt')
     {
         // Define o caminho do diretório de logs baseado no diretório atual
-        $logDirectory = BASE_URL . '/logs';
+        $logDirectory = __DIR__ . '/../../logs';
+        $this->conection= new Connection();
         // Garante que o diretório exista
         if (!is_dir($logDirectory)) {
             mkdir($logDirectory, 0755, true);

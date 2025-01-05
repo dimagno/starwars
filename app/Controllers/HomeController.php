@@ -20,9 +20,12 @@ use App\Controllers\FilmController;
      
  }
  public function filmes(){
-    $films=  new FilmController();
-    $films->listAllFilms();
+    /*$films=  new FilmController();
+    $result = $films->listAllFilms();
+    
+    
     $data =compact('films');
+    */
     require_once __DIR__.'/../Views/films.php';
 
 

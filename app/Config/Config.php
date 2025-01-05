@@ -9,6 +9,7 @@ class Config
     public function __construct()
     {
         // Carrega as variáveis de ambiente
+        $this->loadEnv(__DIR__ . '/../../.env');
         $this->load();
     }
 
@@ -23,6 +24,29 @@ class Config
 
         
     }
+    private function loadEnv($filePath)
+{
+    if (!file_exists($filePath)) {
+        throw new \Exception("Arquivo .env não encontrado.");
+    }
+
+    $lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos(trim($line), '#') === 0) {
+            continue; // Ignora comentários
+        }
+
+        list($key, $value) = explode('=', $line, 2);
+        $key = trim($key);
+        $value = trim($value);
+
+        if (!array_key_exists($key, $_ENV)) {
+            putenv("$key=$value");
+            $_ENV[$key] = $value;
+            $_SERVER[$key] = $value;
+        }
+    }
+}
 
     // Método para acessar uma configuração específica
     public function get($key)
