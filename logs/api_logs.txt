@@ -13,3 +13,80 @@
 [2025-01-05 18:17:16] [info] Status: success - Consulta de filmes realizada com sucesso!
 [2025-01-05 18:17:37] [info] Status: success - Consulta de filmes realizada com sucesso!
 [2025-01-05 18:19:17] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 18:22:33] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 18:25:33] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 18:32:14] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 18:36:42] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 18:37:44] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 18:38:48] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 18:41:57] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 18:43:16] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 18:45:55] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 18:46:25] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 18:48:07] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 18:49:52] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 18:50:24] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 18:52:43] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 19:03:35] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 19:04:52] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 19:06:21] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 19:07:05] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 19:07:07] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 19:07:16] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 19:07:23] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 19:07:56] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 19:08:31] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 19:13:02] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 19:14:25] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 19:38:31] [INFO] Status: 200 - Consulta de personagens do filme A New Hoperealizada com sucesso
+[2025-01-05 19:38:42] [INFO] Status: 200 - Consulta de personagens do filme A New Hoperealizada com sucesso
+[2025-01-05 19:38:43] [INFO] Status: 200 - Consulta de personagens do filme The Empire Strikes Backrealizada com sucesso
+[2025-01-05 19:38:53] [INFO] Status: 200 - Consulta de personagens do filme The Empire Strikes Backrealizada com sucesso
+[2025-01-05 19:38:58] [INFO] Status: 200 - Consulta de personagens do filme Return of the Jedirealizada com sucesso
+[2025-01-05 19:39:05] [INFO] Status: 200 - Consulta de personagens do filme A New Hoperealizada com sucesso
+[2025-01-05 19:39:09] [INFO] Status: 200 - Consulta de personagens do filme Return of the Jedirealizada com sucesso
+[2025-01-05 19:39:19] [INFO] Status: 200 - Consulta de personagens do filme The Empire Strikes Backrealizada com sucesso
+[2025-01-05 19:39:25] [INFO] Status: 200 - Consulta de personagens do filme The Phantom Menacerealizada com sucesso
+[2025-01-05 19:39:35] [INFO] Status: 200 - Consulta de personagens do filme Return of the Jedirealizada com sucesso
+[2025-01-05 19:39:36] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 19:39:37] [INFO] Status: 200 - Consulta de personagens do filme The Phantom Menacerealizada com sucesso
+[2025-01-05 19:39:56] [INFO] Status: 200 - Consulta de personagens do filme Attack of the Clonesrealizada com sucesso
+[2025-01-05 19:40:02] [INFO] Status: 200 - Consulta de personagens do filme The Phantom Menacerealizada com sucesso
+[2025-01-05 19:40:10] [INFO] Status: 200 - Consulta de personagens do filme Attack of the Clonesrealizada com sucesso
+[2025-01-05 19:40:30] [INFO] Status: 200 - Consulta de personagens do filme A New Hoperealizada com sucesso
+[2025-01-05 19:40:32] [INFO] Status: 200 - Consulta de personagens do filme A New Hoperealizada com sucesso
+[2025-01-05 19:40:38] [INFO] Status: 200 - Consulta de personagens do filme Attack of the Clonesrealizada com sucesso
+[2025-01-05 19:40:41] [INFO] Status: 200 - Consulta de personagens do filme A New Hoperealizada com sucesso
+[2025-01-05 19:42:06] [INFO] Status: 200 - Consulta de personagens do filme A New Hoperealizada com sucesso
+[2025-01-05 19:42:16] [INFO] Status: 200 - Consulta de personagens do filme The Empire Strikes Backrealizada com sucesso
+[2025-01-05 19:42:27] [INFO] Status: 200 - Consulta de personagens do filme Return of the Jedirealizada com sucesso
+[2025-01-05 19:42:47] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 19:42:48] [INFO] Status: 200 - Consulta de personagens do filme The Phantom Menacerealizada com sucesso
+[2025-01-05 19:43:09] [INFO] Status: 200 - Consulta de personagens do filme Attack of the Clonesrealizada com sucesso
+[2025-01-05 19:43:29] [INFO] Status: 200 - Consulta de personagens do filme Revenge of the Sithrealizada com sucesso
+[2025-01-05 19:43:29] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 19:43:58] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 19:44:23] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 19:47:10] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 19:50:51] [INFO] Status: 200 - Consulta de personagens do filme A New Hoperealizada com sucesso
+[2025-01-05 19:55:27] [INFO] Status: 200 - Consulta de personagens do filme A New Hoperealizada com sucesso
+[2025-01-05 20:01:59] [INFO] Status: 200 - Consulta de personagens do filme A New Hoperealizada com sucesso
+[2025-01-05 20:03:13] [INFO] Status: 200 - Consulta de personagens do filme A New Hoperealizada com sucesso
+[2025-01-05 20:03:50] [INFO] Status: 200 - Consulta de personagens do filme A New Hoperealizada com sucesso
+[2025-01-05 20:03:59] [INFO] Status: 200 - Consulta de personagens do filme The Empire Strikes Backrealizada com sucesso
+[2025-01-05 20:04:10] [INFO] Status: 200 - Consulta de personagens do filme Return of the Jedirealizada com sucesso
+[2025-01-05 20:04:29] [INFO] Status: 200 - Consulta de personagens do filme The Phantom Menacerealizada com sucesso
+[2025-01-05 20:04:50] [INFO] Status: 200 - Consulta de personagens do filme Attack of the Clonesrealizada com sucesso
+[2025-01-05 20:05:11] [INFO] Status: 200 - Consulta de personagens do filme Revenge of the Sithrealizada com sucesso
+[2025-01-05 20:05:11] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 20:11:36] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 20:12:20] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 20:13:22] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 20:13:38] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 20:14:19] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 20:16:36] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 20:19:03] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 20:20:52] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 20:21:43] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 20:26:42] [info] Status: success - Consulta de filmes realizada com sucesso!
+[2025-01-05 20:26:56] [info] Status: success - Consulta de filmes realizada com sucesso!

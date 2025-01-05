@@ -22,72 +22,88 @@ class FilmController
 
     // Endpoint para listar todos os filmes
     public function listAllFilms()
-{
-    try {
-        // Inicia uma transação
-        $this->connection->beginTransaction();
+    {
+        try {
+            // Inicia uma transação
+            $this->connection->beginTransaction();
 
-        // Obtém todos os filmes da API
-        $films = $this->serviceApi->getAllMovies();
-        
-        if (empty($films)) {
-            throw new \Exception("Nenhum filme encontrado");
+            // Obtém todos os filmes da API
+            $films = $this->serviceApi->getAllMovies();
+
+            if (empty($films)) {
+                throw new \Exception("Nenhum filme encontrado");
+            }
+
+            // Prepara a mensagem de sucesso
+            $message = "Consulta de filmes realizada com sucesso!";
+
+            // Insere um registro no log no banco de dados
+            $query = "INSERT INTO logs (description, status, date) VALUES (:desc, :stts, :dt)";
+            $params = [
+                ':desc' => $message,
+                ':stts' => "success",
+                ':dt' => date('Y-m-d H:i:s')
+            ];
+            $this->connection->execute($query, $params);
+
+            // Confirma a transação
+            $this->connection->commit();    
+
+            // Filtra os dados dos filmes
+            $filteredData = array_map(function ($item) {
+                $filterIds = $this->extractIds($item['fields']['characters']);
+              //  $characteresNames = $this->characteresFilm($filterIds, $item['fields']['title']);
+              
+                // Pega todos os IDs dos personagens
+                return [
+                    "title" => $item["fields"]["title"],
+                    "description" => $item["fields"]["opening_crawl"],
+                    "release_date" => $item["fields"]["release_date"],
+                    "director" => $item["fields"]["director"],
+                    "producer" => $item["fields"]["producer"],
+                    'episode_id' => $item['fields']['episode_id'],
+                    'characteres' => $filterIds
+                ];
+            }, $films);
+
+            // Ordena os filmes pela data de lançamento
+            usort($filteredData, function ($a, $b) {
+                return strtotime($a['release_date']) - strtotime($b['release_date']);
+            });
+
+            // Registra a solicitação no log
+            $this->log->logRequest('success', $message, "info");
+
+            // Retorna os dados filtrados
+            header('Content-Type: application/json');
+            echo json_encode([
+                'status' => 'success',
+                'data' => $filteredData
+            ]);
+        } catch (\Exception $e) {
+            // Reverte a transação em caso de erro
+            $this->connection->rollback();
+
+            // Retorna o erro em formato JSON
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+    function extractIds($urls)
+    {
+        $ids = [];
+
+        foreach ($urls as $url) {
+            // Usando uma expressão regular para capturar a ID após "/api/people/"
+            if (preg_match('/\/api\/people\/(\d+)/', $url, $matches)) {
+                $ids[] = $matches[1];  // Adiciona a ID encontrada ao array
+            }
         }
 
-        // Prepara a mensagem de sucesso
-        $message = "Consulta de filmes realizada com sucesso!";
-        
-        // Insere um registro no log no banco de dados
-        $query = "INSERT INTO logs (description, status, date) VALUES (:desc, :stts, :dt)";
-        $params = [
-            ':desc' => $message,
-            ':stts' => "success",
-            ':dt' => date('Y-m-d H:i:s')
-        ];
-        $this->connection->execute($query, $params);
-
-        // Confirma a transação
-        $this->connection->commit();
-
-        // Filtra os dados dos filmes
-        $filteredData = array_map(function ($item) {
-            return [
-                "title" => $item["fields"]["title"],
-                "description" => $item["fields"]["opening_crawl"],
-                "release_date" => $item["fields"]["release_date"],
-                "characters" => $item["fields"]["characters"],
-                "director" => $item["fields"]["director"],
-                "producer" => $item["fields"]["producer"],
-                'episode_id' => $item['fields']['episode_id']
-            ];
-        }, $films);
-
-        // Ordena os filmes pela data de lançamento
-        usort($filteredData, function ($a, $b) {
-            return strtotime($a['release_date']) - strtotime($b['release_date']);
-        });
-
-        // Registra a solicitação no log
-        $this->log->logRequest('success', $message, "info");
-
-        // Retorna os dados filtrados
-        header('Content-Type: application/json');
-        echo json_encode([
-            'status' => 'success',
-            'data' => $filteredData
-        ]);
-
-    } catch (\Exception $e) {
-        // Reverte a transação em caso de erro
-        $this->connection->rollback();
-
-        // Retorna o erro em formato JSON
-        echo json_encode([
-            'status' => 'error',
-            'message' => $e->getMessage()
-        ]);
+        return $ids;
     }
-}
 
 
     // Endpoint para obter os detalhes de um filme
@@ -126,9 +142,24 @@ class FilmController
                 'message' => $e->getMessage()
             ]);
         }
- 
     }
-    function teste(){
-       $this->listAllFilms();
+
+    function characteresFilm(array $characters, $film)
+    {
+        try {
+            $data = [];
+            
+            foreach ($characters as $character) {
+                
+                $personagem = $this->serviceApi->getCharacter($character);
+                
+                array_push($data, $personagem['name']);
+            }
+            return json_encode($data);
+            $this->log->logRequest('200', "Consulta de personagens do filme " . $film . " realizada com sucesso na API externa");
+            return $data;
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
     }
 }

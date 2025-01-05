@@ -48,7 +48,7 @@
 <script>
     $(document).ready(function() {
                 $.ajax({
-                        url: '/starwars/ajax', // Não adicione o caminho "/starwars"
+                        url: '/starwars/ajax/filmes', 
                         type: 'GET',
                         dataType: 'JSON'
                     })
