@@ -2,13 +2,17 @@
 
 namespace app\Services;
 
+use app\Database\Connection;
+
 class ApiService
 {
     private $baseUrl;
+    private $connection;
 
     public function __construct()
     {
         $this->baseUrl = 'https://swapi-node.vercel.app/api/';
+        $this->connection = new Connection();
     }
 
     private function fetchData($endpoint)
@@ -25,6 +29,14 @@ class ApiService
 
         // Verifica se houve erro na requisição
         if (curl_errno($curl)) {
+            $query = "INSERT INTO logs (description, status, date) VALUES (:desc, :stts, :dt)";
+            $params = [
+                ':desc' => 'Falha ao consultar na API na url '.$url,
+                ':stts' => "error",
+                ':dt' => date('Y-m-d H:i:s')
+            ];
+            $this->connection->execute($query,$params);
+
             throw new \Exception("Erro ao acessar a API externa: " . curl_error($curl));
         }
 
@@ -39,6 +51,13 @@ class ApiService
         } elseif (isset($decodedResponse['results'])) {
             return $decodedResponse['results'];
         } else {
+            $query = "INSERT INTO logs (description, status, date) VALUES (:desc, :stts, :dt)";
+            $params = [
+                ':desc' => 'Falha ao consultar na API na url '.$url,
+                ':stts' => "error",
+                ':dt' => date('Y-m-d H:i:s')
+            ];
+            $this->connection->execute($query,$params);
             throw new \Exception("Resposta inválida da API.");
         }
     }

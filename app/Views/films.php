@@ -75,8 +75,7 @@
                 let newdata = Object.values(data);
                 if (newdata[0] != 'error') {
                     var filmsArray = Object.values(data['data'])
-                    console.log("Sucesso M:", data['data']);
-                    console.log("array films:" + filmsArray)
+                  
                     filmsArray.forEach(function(item) {
                         makeView(item)
                     })
@@ -95,7 +94,6 @@
             .fail(function(xhr) {
                 let cleanResponseText = xhr.responseText.replace(/^\d+/, '');
                 let vari = JSON.stringify(cleanResponseText);
-                console.log(vari);
                 // Converte o texto limpo para um objeto JSON
                 let responseObject = cleanResponseText;
                 let jsonObject = JSON.parse(responseObject);
@@ -104,7 +102,6 @@
                 // Captura apenas a mensagem
 
                 let errorMessage = responseObject['message'];
-                console.log('Detalhes do erro:' + errorMessage); // Detalhes adicionais
                 Swal.fire({
                     'title': "Ops, algo está errado",
                     'text': errorMessage,
@@ -116,10 +113,8 @@
     });
 
     function makeView(item) {
-        console.log("itens: " + item)
         
         let epCorrection = item.episode_id>3 ?item.episode_id-3:item.episode_id+3;
-        console.log("EPisodio:"+item.episode_id + "> " + epCorrection );
         
         var htmlContent = `
         <div class="single-galeria col-sm-4 shadow shadow-lg border-1 border-top  border-end border-bottom border-warning mb-2  pb-2 pt-2">
