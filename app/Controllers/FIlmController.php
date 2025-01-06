@@ -56,11 +56,11 @@ class FilmController
               
                 // Pega todos os IDs dos personagens
                 return [
-                    "title" => $item["fields"]["title"],
-                    "description" => $item["fields"]["opening_crawl"],
-                    "release_date" => $item["fields"]["release_date"],
-                    "director" => $item["fields"]["director"],
-                    "producer" => $item["fields"]["producer"],
+                    "title" => $item['fields']["title"],
+                    "description" => $item['fields']["opening_crawl"],
+                    "release_date" => $item['fields']["release_date"],
+                    "director" => $item['fields']["director"],
+                    "producer" => $item['fields']["producer"],
                     'episode_id' => $item['fields']['episode_id'],
                     'characteres' => $filterIds
                 ];
@@ -164,6 +164,20 @@ class FilmController
     }
     public function filmDetail($id){
         $filmDetails = $this->serviceApi->getMovie($id);
-        var_dump($filmDetails);
+        $characters = $filmDetails['characters'];
+        $characters = $this->extractIds($characters);
+        $characteresNames = $this->characteresFilm($characters, $filmDetails['title']);
+    
+        $filteredData = [
+            "title" => $filmDetails["title"], // Título do filme
+            "description" => $filmDetails["opening_crawl"], // Descrição (abertura)
+            "release_date" => $filmDetails["release_date"], // Data de lançamento
+            "director" => $filmDetails["director"], // Diretor
+            "producer" => $filmDetails["producer"], // Produtor
+            "episode_id" => $filmDetails["episode_id"], // ID do episódio
+            'characters'=>$characteresNames
+        ];
+        require_once __DIR__ . '/../Views/filmDetail.php';
+
     }
 }

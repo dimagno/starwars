@@ -23,12 +23,12 @@
       </ul>
    </header>
    <section>
-      <img src="public/imgs/moon.png" alt="" class="moon">
-      <img src="public/imgs/stars.png" alt="" class="stars">
-      <img src="public/imgs/mountains_behind.png" class="mountain-b" alt="">
+      <img src="/starwars/public/imgs/moon.png" alt="" class="moon">
+      <img src="/starwars/public/imgs/stars.png" alt="" class="stars">
+      <img src="/starwars/public/imgs/mountains_behind.png" class="mountain-b" alt="">
       <h2 id="text" class="text-warning">Star Wars</h2>
       
    <a href="#" class="btn" > Explore</a>
-      <img src="public/imgs/mountains_front.png" class="mountain-f" alt="">
+      <img src="/starwars/public/imgs/mountains_front.png" class="mountain-f" alt="">
    </section>
 <div class="sec">
