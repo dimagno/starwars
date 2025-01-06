@@ -1,12 +1,12 @@
 <?php include "layout/header.php" ?>
 <div class="films ">
-    <div class="header ">
-        <div class="container-fluid py-5 bg-dark row">
-            <h1 class="display-5 fw-bold text-warning text-left d-flex  h1-display  ">Catalogo de filmes da saga Star Wars</h1>
-            <p class="col-md-8 text-center" style="text-align: center;">Este catálogo detalha os filmes da franquia Star Wars, com foco nos 6 primeiros episódios, conforme especificado pela API <a href="https://swapi-node.vercel.app" target="_blank"> swapi-node.vercel.app</a>. A saga é organizada em duas trilogias principais, que exploram as origens e os eventos centrais do universo Star Wars.</p>
+    <div class="header container-fluid row ">
+        <div class="container py-5 bg-dark col-12 ">
+            <h1 class="display-5 fw-bold text-warning    h1-display  ">Catalogo de filmes da saga Star Wars</h1>
+            <p class=" text-center" style="text-align: center;">Este catálogo detalha os filmes da franquia Star Wars, com foco nos 6 primeiros episódios, conforme disponiveis pela API <a href="https://swapi-node.vercel.app" target="_blank"> swapi-node.vercel.app</a>. A saga é organizada em duas trilogias principais, que exploram as origens e os eventos centrais do universo Star Wars.</p>
         </div>
 
-        <div class="galeria row">
+        <div class="galeria row ">
 
             <!--<div class="single-galeria col-sm-4 shadow shadow-lg ">
                 <div class="d-flex flex-column align-items-center text-center">
@@ -34,18 +34,23 @@
 
     }
 
+    .single-galeria {
+        background: linear-gradient(black, #2b1055);
+    }
+
     .single-galeria img {
         max-width: 100%;
         height: 300px;
         margin: 2px 0px;
     }
-    .h1-display{
-        font-family: 'StarJedi';
-        color:yellow;
+
+    .h1-display {
+        font-family: 'StarJedi' !important;
+        color: yellow;
     }
 
     .single-galeria h1 {
-        font-family: 'StarJedi';
+        font-family: 'StarJedi' !important;
         color: yellow;
     }
 
@@ -53,13 +58,11 @@
         text-size-adjust: 2px;
 
     }
-    .single-galeria a{
+
+    .single-galeria a {
         text-decoration: none;
     }
-    .single-galeria a:hover{
-        text-decoration: underline;
-        
-    }
+
 </style>
 <script>
     $(document).ready(function() {
@@ -69,28 +72,63 @@
                 dataType: 'JSON'
             })
             .done(function(data) {
-                var filmsArray = Object.values(data['data'])
-                console.log("Sucesso M:", data['data']);
-                console.log("array films:" + filmsArray)
-                filmsArray.forEach(function(item) {
-                    makeView(item)
-                })
+                let newdata = Object.values(data);
+                if (newdata[0] != 'error') {
+                    var filmsArray = Object.values(data['data'])
+                    console.log("Sucesso M:", data['data']);
+                    console.log("array films:" + filmsArray)
+                    filmsArray.forEach(function(item) {
+                        makeView(item)
+                    })
+                } else {
+                    Swal.fire({
+                        'title': "Ops, algo está errado",
+                        'text': data['message'],
+                        'icon': 'error',
+                        'confirmButtonText': 'fechar',
+
+                    })
+
+                }
             })
-            .fail(function(err) {
-                console.log("Erro @:", err);
+
+            .fail(function(xhr) {
+                let cleanResponseText = xhr.responseText.replace(/^\d+/, '');
+                let vari = JSON.stringify(cleanResponseText);
+                console.log(vari);
+                // Converte o texto limpo para um objeto JSON
+                let responseObject = cleanResponseText;
+                let jsonObject = JSON.parse(responseObject);
+                let valuesArray = Object.values(jsonObject);
+
+                // Captura apenas a mensagem
+
+                let errorMessage = responseObject['message'];
+                console.log('Detalhes do erro:' + errorMessage); // Detalhes adicionais
+                Swal.fire({
+                    'title': "Ops, algo está errado",
+                    'text': errorMessage,
+                    'icon': 'error',
+                    'confirmButtonText': 'fechar',
+
+                })
             });
     });
 
     function makeView(item) {
         console.log("itens: " + item)
+        
+        let epCorrection = item.episode_id>3 ?item.episode_id-3:item.episode_id+3;
+        console.log("EPisodio:"+item.episode_id + "> " + epCorrection );
+        
         var htmlContent = `
-        <div class="single-galeria col-sm-4 shadow shadow-lg border-1  border-end border-bottom border-secondary mb-2  pb-2 pt-2">
+        <div class="single-galeria col-sm-4 shadow shadow-lg border-1 border-top  border-end border-bottom border-warning mb-2  pb-2 pt-2">
             <div class="d-flex flex-column align-items-center text-center">
                 <img src="public/imgs/films/ep${item.episode_id}.jpg" class="img-fluid" alt="${item.title}">
                 <div class="info">
-                    <h1 class=' h1'>${item.title}</h1>
+                    <h1 class=' h1 notranslate'>${item.title}</h1>
                     <p class='fs-6 p-1'>${item.description}</p>
-                    <a href="/starwars/filme/${item.episode_id}" class='text-warning'>Ver Mais</a>
+                    <a href="/starwars/filme/${epCorrection}" class='text-white btn btn-outline-warning  btn-lg' style='text-decoration:none;'>Ver Mais</a>
                 </div>
             </div> 
         </div>

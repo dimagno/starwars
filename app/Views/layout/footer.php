@@ -3,6 +3,8 @@
 </body>
 
 </html>
-<link rel="stylesheet" href="/starwars/public/css/style.css">
-</script>
+
+
 <script src="/starwars/public/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+

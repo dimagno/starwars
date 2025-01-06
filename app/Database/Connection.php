@@ -85,4 +85,15 @@ class Connection
     {
         return $this->connect()->lastInsertId();
     }
+    public function isConnected()
+{
+    try {
+        // Tenta realizar uma consulta simples para verificar a conexão
+        $stmt = $this->connect()->query("SELECT 1");
+        return $stmt !== false;  // Retorna true se a consulta for bem-sucedida
+    } catch (PDOException $e) {
+        // Caso haja erro ao tentar consultar, a conexão não está ativa
+        return false;
+    }
+}
 }

@@ -25,9 +25,15 @@ header{
     align-items: center;
     z-index: 10000;
 }
+#span-icon{
+    color:red;
+}
 header ul li a, header a{
     
-    font-family: 'StarJedi';
+    font-family: 'StarJedi' !important;
+}
+.span-icon{
+    font-family: 'StarJedi' !important;
 }
 header .logo{
    
@@ -45,18 +51,21 @@ header ul{
 header ul li {
     list-style: none;
     margin-left: 20px;
+    padding: 0px 2px;
+    
     
 }
 header ul li a {
+    border-radius: 5px;
     text-decoration: none;
     padding:6px 15px;
-    color:yellow;
-    border-radius:20px;
+    color:rgba(225, 187, 17,1);
+    
 }
 header ul li a:hover,
  header ul li a.active{
-background: yellow;
-color:#2b1055;
+background: white;
+color:rgba(225, 187, 17,1);
 }
 section {
     position:relative;
@@ -100,21 +109,12 @@ section.mountain-f{
 #text{
 position: absolute;
 
-color:yellow;
 white-space: nowrap;
 font-size: 7.5vw;
 z-index:9;
 }
 .btn{
     text-decoration: none;
-    display: none;
-    visibility: hidden;
-    padding: 8px 30px;
-    border-radius: 40px;
-    color:#2b1055;
-    font-size:1.5em;
-    display:inline-block;
-    transform: translate(100px);
 }
 .sec{
     position:relative;
@@ -135,4 +135,13 @@ z-index:9;
 .conteudo{  
     visibility: hidden;
 
+}
+.text-welcome{
+    font-family: 'StarJedi' !important;
+    text-align: center;    
+    box-shadow: #1c0522;
+    text-shadow: #1c0522;
+    background:linear-gradient(to top, #000, transparent);
+    padding: 2px;
+    margin:3px;
 }
