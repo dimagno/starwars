@@ -1,5 +1,6 @@
 <?php
 require_once 'bootstrap.php';
+require "routes/web.php";
 
 function my_autoloader($class) {
     // Converte o namespace em caminho para o arquivo
@@ -25,19 +26,28 @@ $url = rtrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 // Carrega as rotas definidas
 $routes = include 'routes/web.php';
 
-// Verifica se a URL corresponde a uma rota definida
-if (array_key_exists($url, $routes)) {
-    // Desestrutura o valor da rota: controlador e método
-    [$controller, $method] = $routes[$url];
-    
-    // Cria uma instância do controlador
-    $controllerInstance = new $controller();
-    
-    // Chama o método correspondente
-    $controllerInstance->$method();
-} else {
+// Variável para verificar se a rota foi encontrada
+$routeFound = false;
+
+foreach ($routes as $route => $handler) {
+    // Substitui {param} por uma expressão regular para capturar parâmetros
+    $pattern = preg_replace('/\{[^\}]+\}/', '([^/]+)', $route);
+    $pattern = str_replace('/', '\/', $pattern);
+
+    if (preg_match("/^$pattern$/", $url, $matches)) {
+        array_shift($matches); // Remove a correspondência completa da URL
+        [$controller, $method] = $handler;
+        
+        $controllerInstance = new $controller();
+        call_user_func_array([$controllerInstance, $method], $matches);
+
+        $routeFound = true;
+        break;
+    }
+}
+
+if (!$routeFound) {
     // Se não encontrar a rota, retorna erro 404
     http_response_code(404);
     echo "Página não encontrada.";
 }
- ?>

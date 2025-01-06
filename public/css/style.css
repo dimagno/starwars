@@ -30,7 +30,7 @@ header ul li a, header a{
     font-family: 'StarJedi';
 }
 header .logo{
-    color:#fff;
+   
     font-weight: 700;
     text-decoration: none;
     font-size:2em;
@@ -50,12 +50,12 @@ header ul li {
 header ul li a {
     text-decoration: none;
     padding:6px 15px;
-    color:#fff;
+    color:yellow;
     border-radius:20px;
 }
 header ul li a:hover,
  header ul li a.active{
-background: #fff;
+background: yellow;
 color:#2b1055;
 }
 section {
@@ -100,7 +100,7 @@ section.mountain-f{
 #text{
 position: absolute;
 
-color:#fff;
+color:yellow;
 white-space: nowrap;
 font-size: 7.5vw;
 z-index:9;
@@ -111,7 +111,6 @@ z-index:9;
     visibility: hidden;
     padding: 8px 30px;
     border-radius: 40px;
-    background: #fff;
     color:#2b1055;
     font-size:1.5em;
     display:inline-block;
@@ -125,7 +124,7 @@ z-index:9;
 .sec h2{
     font-size: 3.5em;
     margin-bottom: 10px;
-    color:#fff;
+    color:yellow;
     text-align: center;
 }
 .sec p {

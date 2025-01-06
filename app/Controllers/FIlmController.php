@@ -162,4 +162,8 @@ class FilmController
             return $ex->getMessage();
         }
     }
+    public function filmDetail($id){
+        $filmDetails = $this->serviceApi->getMovie($id);
+        var_dump($filmDetails);
+    }
 }

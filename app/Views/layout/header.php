@@ -6,27 +6,27 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
+    <link rel="icon" href="/starwars/public/imgs/icon.png" type="image/png">
     
    
 </head>
 
  <body>
    <header>
-      <a href="#" class ="logo">D. MAGN0</a>
+      <a href="#" class ="logo text-warning">D. MAGN0</a>
       <ul>
-         <li><a href="/starwars" class="active">Home</a></li>
-         <li><a href="<?php echo BASE_URL ."starwars/filmes";?>">Movies</a></li>
-         <li><a href="#">characters</a></li>
-         <li><a href="#">Planets</a></li>
-         <li><a href="<?php echo BASE_URL ."starwars/sobre";?>">About</a></li>
+         <li><a class="text-warning" href="/starwars" class="active">Home</a></li>
+         <li><a  class="text-warning" href="<?php echo BASE_URL ."starwars/filmes";?> ">Movies</a></li>
+         <li><a  class="text-warning" href="#">characters</a></li>
+         <li><a class="text-warning" href="#">Planets</a></li>
+         <li><a  class="text-warning" href="<?php echo BASE_URL ."starwars/sobre";?>">About</a></li>
       </ul>
    </header>
    <section>
       <img src="public/imgs/moon.png" alt="" class="moon">
       <img src="public/imgs/stars.png" alt="" class="stars">
       <img src="public/imgs/mountains_behind.png" class="mountain-b" alt="">
-      <h2 id="text">Star Wars</h2>
+      <h2 id="text" class="text-warning">Star Wars</h2>
       
    <a href="#" class="btn" > Explore</a>
       <img src="public/imgs/mountains_front.png" class="mountain-f" alt="">
