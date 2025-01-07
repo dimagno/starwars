@@ -1,119 +1,124 @@
 <?php include "layout/header.php";
-$nameEp = '/starwars/public/imgs/films/ep'.$filteredData['episode_id'].'.jpg';
+$nameEp = '/starwars/public/imgs/films/ep' . $filteredData['episode_id'] . '.jpg';
 ?>
 <div class="filmDetail bg-dark">
-  <p class="text-white">  Detalhes do filme <?php echo  $filteredData['title'] ?></p>
+  <p class="text-warning display display-1 pt-2 pb-2 mt-2 mb-2"> <?php echo  $filteredData['title'] ?> - EP <?php echo $filteredData['episode_id']?></p>
   <div class="container">
-          <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-6 module come-in">
-             <div class="img3">
-                <img src="<?php echo $nameEp ?>" lass='<?php echo $filteredData['episode_id'];?>' alt="img1">
-             </div>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6 module come-in">
-             <div class="con1">
-                <span>DESCRIPTION</span>
-                <p class=""><?php echo $filteredData['description'] ?></p>
-             
-                <div class="con1">
-                  <span> DIRECTOR:</span>
-                  <p><?php echo $filteredData['director']?></p>
-                </div>
-                
-                <div class="con1">
-                  <span> PRODUCER:</span>
-                  <p><?php echo $filteredData['producer']?></p>
-                </div>
-                
-                <div class="con1">
-                  <span> CHARACTERES:</span>
-                  <p><?php echo $filteredData['characters']?></p>
-                </div>
-                <div class="con1">
-                  <span> RELEASE DATE:</span>
-                  <p><?php echo $filteredData['release_date'] .' ('. $filteredData['filmAge'] . '.)' ?></p>
-                </div>
-
-
-
-             </div>
-          </div>          
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6 module come-in">
+        <div class="img3">
+          <img src="<?php echo $nameEp ?>" lass='<?php echo $filteredData['episode_id']; ?>' alt="img1" class="img-fluid">
         </div>
       </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 module come-in">
+        <div class="con1">
+          <span class='text-warning'>DESCRIPTION</span>
+          <p class="p fs-6 fw-light border-bottom p-2"><?php echo $filteredData['description'] ?></p>
+
+          <div class="con1">
+            <span class='text-warning'> DIRECTOR:</span>
+            <p class='p fs-6 fw-light text-left border-bottom p-2'><?php echo $filteredData['director'] ?></p>
+          </div>
+
+          <div class="con1">
+            <span class='text-warning'> PRODUCER:</span>
+            <p class='p fs-6 fw-light text-left border-bottom p-2'><?php echo $filteredData['producer'] ?></p>
+          </div>
+
+          <div class="con1">
+            <span class='text-warning'> CHARACTERES:</span>
+            <p class='p fs-6 fw-light text-left border-bottom p-2'><?php echo $filteredData['characters'] ?></p>
+          </div>
+          <div class="con1">
+            <span class='text-warning'> RELEASE DATE:</span>
+            <p class='p fs-6 fw-light text-left border-bottom p-2'><?php echo $filteredData['release_date'] . ' (' . $filteredData['filmAge'] . '.)' ?></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 mb-2 mt-2 p-2">
+        <h2 class='h2 text-warning text-center mt-4  p-3'> Mais informações</h1>
+
+      </div>
+      <!-- Seção de Veículos -->
+      <div class="col-lg-12">
+        <div class="list-section">
+          <h2 class="text-warning h2 text-center">Aeronaves</h2>
+          <ul class="d-flex justify-content-center list-inline">
+            <li class="list-inline-item text-white">Veículo 1</li>
+            <li class="list-inline-item text-white">Veículo 2</li>
+            <li class="list-inline-item text-white">Veículo 3</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Seção de Planetas -->
+      <div class="col-lg-12">
+        <div class="list-section">
+          <h2 class="text-warning h2 text-center">Planetas</h2>
+          <ul class="d-flex justify-content-center list-inline">
+            <li class="list-inline-item text-white">Planeta 1</li>
+            <li class="list-inline-item text-white">Planeta 2</li>
+            <li class="list-inline-item text-white">Planeta 3</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <?php include "layout/footer.php" ?>
 <style>
+  .con1 span {
+    font-weight: 350;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+    
+    font-family: sans-serif;
+    color: rgb(172, 175, 37);
+  }
 
-.con1 span{
-	font-weight:400;
-	color:white;
-	font-size:12px;
-	text-transform:uppercase;
-	padding-bottom:5px;
-	display:block;
-  font-family: sans-serif;
-  color:rgb(172, 175, 37);
-}
+  .cont1 p {
+    color: #696969;
+    font-size: 10px;
+    float:left;
+    text-align: left;
+  }
 
-.con1 h2{
-	font-weight:400;
-	color:#1a1a1a;
-	font-size:37px;
-	line-height:38px;
-	margin:0;
-	background:url(../images/line.png) no-repeat left bottom;
-	padding-bottom:10px;
-	margin-bottom:25px;
-}
-.con1{
-	padding-top:0px;
-}
-
-.con1  p{
-	font-weight:400;
-	color:#8a8a8a;
-	font-size:18px;
-  font-family: sans-serif;
-	line-height:26px;
+  .p {
+    font-size: 1px;
+    font-family: sans-serif, 'Courier New', Courier, monospace;
+  }
+  .list-section {
+  padding: 20px;
+  background: linear-gradient(to top, #696969, #000); /* Gradiente de azul escuro para azul claro */
+  border-radius: 8px;
 }
 
-.tgimg {
-  float: left;
-  min-width: 55px;
-  padding-top: 8px;
-  width: 10%;
+.list-section h2 {
+  margin-bottom: 15px;
+  font-size: 1.25rem;
+  font-weight: bold;
 }
-.tgcon{
-	float:left;
-	width:85%;
+
+.list-section ul {
+  padding-left: 0;
+  margin: 0;
 }
-.tgcon span{
-	display:block;
-	font-weight:400;
-	color:yellow;
-	font-size:18px;
+
+.list-section .list-inline-item {
+  font-size: 0.9rem;
+  margin: 0 15px;
 }
-.tgcon p{
-	font-weight:400;
-	color:#8a8a8a;
-	font-size:13px;
-	line-height:26px;
+
+.list-section .text-white {
+  color: white !important;
 }
-.tags{
-	padding-top:60px;
+.h1, .h2{
+  font-family: 'StarJedi';
+  color:yellow;
 }
-.tg{
-	padding-bottom:45px;
+.display{
+  font-family: 'StarJedi';
 }
-.img3 img{
-	width:90%;
-	    height: 89vh;
-	border-radius:6px;
-	border:#e2e7ec solid 1px;
-	-webkit-box-shadow: 7px 6px 34px -9px rgba(144,155,165,0.48);
--moz-box-shadow: 7px 6px 34px -9px rgba(144,155,165,0.48);
-box-shadow: 7px 6px 34px -9px rgba(144,155,165,0.48);
-}
-/* End Grap chart */
 </style>

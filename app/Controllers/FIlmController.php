@@ -48,7 +48,7 @@ class FilmController
                 ':dt' => date('Y-m-d H:i:s')
             ];
             $this->connection->execute($query, $params);
-            $this->log->logRequest('200', 'Consulta da lista de filmes Realizada com sucesso','INFO');
+            $this->log->logRequest(200, 'Consulta da lista de filmes Realizada com sucesso','INFO');
 
             // Confirma a transação
             $this->connection->commit();
@@ -75,7 +75,7 @@ class FilmController
             });
 
             // Registra a solicitação no log
-            $this->log->logRequest('success', $message, "info");
+            $this->log->logRequest(200, $message, "info");
 
             // Retorna os dados filtrados
             header('Content-Type: application/json');
@@ -89,7 +89,7 @@ class FilmController
                 'status' => 'error',
                 'data' => null,
                 'message'=> "Falha ao se conectar com a base de dados"]);
-                $this->log->logRequest('500',"Falha ao se conectar com a base", 'ERROR');
+                $this->log->logRequest(500,"Falha ao se conectar com a base", 'ERROR');
 
         }
         } catch (\Exception $e) {
@@ -101,6 +101,7 @@ class FilmController
                 'status' => 'error',
                 'message' => $e->getMessage()
             ]);
+            $this->log->logRequest(500, $e->getMessage(), 'ERROR');
         }
     }
     function extractIds($urls)
@@ -131,11 +132,13 @@ class FilmController
 
                 array_push($data, $personagem['name']);
             }
+             $this->log->logRequest(200, "Consulta de personagens do filme " . $film . " realizada com sucesso na API externa");
+           
             return json_encode($data);
-            $this->log->logRequest('200', "Consulta de personagens do filme " . $film . " realizada com sucesso na API externa");
-            return $data;
+           
         } catch (\Exception $ex) {
             return $ex->getMessage();
+            $this->log->logRequest(500, $ex->getMessage(), 'ERROR');
         }
     }
     public function filmDetail($id)
@@ -191,7 +194,7 @@ class FilmController
         catch (\Exception $ex) {
             $return = ['message'=> $ex->getMessage(), 'code'=>$ex->getCode()];
             $this->connection->rollback();
-            $this->log->logRequest('500',"Falha ao se conectar com a base", 'ERROR');
+            $this->log->logRequest(500,"Falha ao se conectar com a base", 'ERROR');
            
             echo $return;
         }
@@ -215,8 +218,8 @@ class FilmController
                 'years' => $interval->y,
                 'months' => $interval->m,
                 'days' => $interval->d,
-            ];
-
+            ];  
+            
             return json_encode([
                 'status' => 'success',
                 'data' => $filmAge
