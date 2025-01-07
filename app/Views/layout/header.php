@@ -46,4 +46,4 @@
       
       <img src="/starwars/public/imgs/mountains_front.png" class="mountain-f" alt="">
    </section>
-<div class="sec">
+<div class="sec container-fluid">

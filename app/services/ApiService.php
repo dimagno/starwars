@@ -31,7 +31,7 @@ class ApiService
         if (curl_errno($curl)) {
             $query = "INSERT INTO logs (description, status, date) VALUES (:desc, :stts, :dt)";
             $params = [
-                ':desc' => 'Falha ao consultar na API na url '.$url,
+                ':desc' => 'Falha na execução da requisição  '.$url,
                 ':stts' => "error",
                 ':dt' => date('Y-m-d H:i:s')
             ];
@@ -53,7 +53,7 @@ class ApiService
         } else {
             $query = "INSERT INTO logs (description, status, date) VALUES (:desc, :stts, :dt)";
             $params = [
-                ':desc' => 'Falha ao consultar na API na url '.$url,
+                ':desc' => 'resposta invalida da APi  no endpoit :'.$url,
                 ':stts' => "error",
                 ':dt' => date('Y-m-d H:i:s')
             ];

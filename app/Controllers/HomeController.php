@@ -2,10 +2,17 @@
 
 namespace App\Controllers;
 use App\Models\Home;
-use App\Controllers\FilmController;
+Use App\Services\ApiService;
  class HomeController {
     private $filmController;
-
+    private $apiService;
+     
+    
+    public function __construct()
+    {
+        $this->apiService = new ApiService();
+        
+    }
 
     public function index(){
         $homeModel = new Home();
@@ -28,6 +35,18 @@ use App\Controllers\FilmController;
     */
     require_once __DIR__.'/../Views/films.php';
 
+
+ }
+ public function getAllMovies(){
+
+     echo json_encode($this->apiService->getAllMovies());
+    
+   
+ 
+ }
+ 
+ public function getFilm($id){
+    echo json_encode($this->apiService->getMovie($id));
 
  }
 }
