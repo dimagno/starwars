@@ -24,74 +24,74 @@ class FilmController
     public function listAllFilms()
     {
         try {
+
             // Inicia uma transação
-            if($this->connection->isConnected()){
-            
+            if ($this->connection->isConnected()) {
 
-            $this->connection->beginTransaction();
 
-            // Obtém todos os filmes da API
-            $films = $this->serviceApi->getAllMovies();
+                $this->connection->beginTransaction();
 
-            if (empty($films)) {
-                throw new \Exception("Nenhum filme encontrado");
-            }
+                // Obtém todos os filmes da API
+                $films = $this->serviceApi->getAllMovies();
 
-            // Prepara a mensagem de sucesso
-            $message = "Consulta de filmes realizada com sucesso!";
+                if (empty($films)) {
+                    throw new \Exception("Nenhum filme encontrado");
+                }
 
-            // Insere um registro no log no banco de dados
-            $query = "INSERT INTO logs (description, status, date) VALUES (:desc, :stts, :dt)";
-            $params = [
-                ':desc' => $message,
-                ':stts' => "success",
-                ':dt' => date('Y-m-d H:i:s')
-            ];
-            $this->connection->execute($query, $params);
-            $this->log->logRequest(200, 'Consulta da lista de filmes Realizada com sucesso','INFO');
+                // Prepara a mensagem de sucesso
+                $message = "Consulta de filmes realizada com sucesso!";
 
-            // Confirma a transação
-            $this->connection->commit();
-
-            // Filtra os dados dos filmes
-            $filteredData = array_map(function ($item) {
-                $filterIds = $this->extractIds($item['fields']['characters']);
-                //  $characteresNames = $this->characteresFilm($filterIds, $item['fields']['title']);
-
-                return [
-                    "title" => $item['fields']["title"],
-                    "description" => $item['fields']["opening_crawl"],
-                    "release_date" => $item['fields']["release_date"],
-                    "director" => $item['fields']["director"],
-                    "producer" => $item['fields']["producer"],
-                    'episode_id' => $item['fields']['episode_id'],
-                    'characteres' => $filterIds
+                // Insere um registro no log no banco de dados
+                $query = "INSERT INTO logs (description, status, date) VALUES (:desc, :stts, :dt)";
+                $params = [
+                    ':desc' => $message,
+                    ':stts' => "success",
+                    ':dt' => date('Y-m-d H:i:s')
                 ];
-            }, $films);
+                $this->connection->execute($query, $params);
+                $this->log->logRequest(200, 'Consulta da lista de filmes Realizada com sucesso', 'INFO');
 
-            // Ordena os filmes pela data de lançamento
-            usort($filteredData, function ($a, $b) {
-                return strtotime($a['episode_id']) - strtotime($b['episode_id']);
-            });
+                // Confirma a transação
+                $this->connection->commit();
 
-            // Registra a solicitação no log
-            $this->log->logRequest(200, $message, "info");
+                // Filtra os dados dos filmes
+                $filteredData = array_map(function ($item) {
+                    $filterIds = $this->extractIds($item['fields']['characters']);
+                    //  $characteresNames = $this->characteresFilm($filterIds, $item['fields']['title']);
 
-            // Retorna os dados filtrados
-            header('Content-Type: application/json');
-            echo json_encode([
-                'status' => 'success',
-                'data' => $filteredData
-            ]);
-        }
-        else{
-            echo json_encode([
-                'status' => 'error',
-                'data' => null,
-                'message'=> "Falha ao se conectar com a base de dados"]);
-                $this->log->logRequest(500,"Falha ao se conectar com a base", 'ERROR');
+                    return [
+                        "title" => $item['fields']["title"],
+                        "description" => $item['fields']["opening_crawl"],
+                        "release_date" => $item['fields']["release_date"],
+                        "director" => $item['fields']["director"],
+                        "producer" => $item['fields']["producer"],
+                        'episode_id' => $item['fields']['episode_id'],
+                        'characteres' => $filterIds
+                    ];
+                }, $films);
 
-        }
+                // Ordena os filmes pela data de lançamento
+                usort($filteredData, function ($a, $b) {
+                    return strtotime($a['episode_id']) - strtotime($b['episode_id']);
+                });
+
+                // Registra a solicitação no log
+                $this->log->logRequest(200, $message, "info");
+
+                // Retorna os dados filtrados
+                header('Content-Type: application/json');
+                echo json_encode([
+                    'status' => 'success',
+                    'data' => $filteredData
+                ]);
+            } else {
+                echo json_encode([
+                    'status' => 'error',
+                    'data' => null,
+                    'message' => "Falha ao se conectar com a base de dados"
+                ]);
+                $this->log->logRequest(500, "Falha ao se conectar com a base", 'ERROR');
+            }
         } catch (\Exception $e) {
             // Reverte a transação em caso de erro
             $this->connection->rollback();
@@ -104,16 +104,37 @@ class FilmController
             $this->log->logRequest(500, $e->getMessage(), 'ERROR');
         }
     }
-    function extractIds($urls)
+    function extractIds($urls, $method = true)
     {
         $ids = [];
 
         foreach ($urls as $url) {
             // Usando uma expressão regular para capturar a ID após "/api/people/"
-            if (preg_match('/\/api\/people\/(\d+)/', $url, $matches)) {
-                $ids[] = $matches[1];  // Adiciona a ID encontrada ao array
+            if ($method) {
+                if (preg_match('/\/api\/people\/(\d+)/', $url, $matches)) {
+                    $ids[] = $matches[1];  // Adiciona a ID encontrada ao array
+                }
+            } else {
+
+                if (preg_match('/\/api\/starships\/(\d+)/', $url, $matches)) {
+                    $ids[] = $matches[1];
+                }
             }
         }
+
+        return $ids;
+    }
+    function extractIds2($urls, $flag = false)
+    {
+        $ids = [];
+        foreach ($urls as $url)
+            if (!$flag) {
+                if (preg_match('/\/api\/planets\/(\d+)/', $url, $matches))
+                    $ids[] = $matches[1];
+            } else {
+                if (preg_match('/\/api\/species\/(\d+)/', $url, $matches))
+                    $ids[] = $matches[1];
+            }
 
         return $ids;
     }
@@ -132,71 +153,74 @@ class FilmController
 
                 array_push($data, $personagem['name']);
             }
-             $this->log->logRequest(200, "Consulta de personagens do filme " . $film . " realizada com sucesso na API externa");
-           
+            $this->log->logRequest(200, "Consulta de personagens do filme " . $film . " realizada com sucesso na API externa");
+
             return json_encode($data);
-           
         } catch (\Exception $ex) {
             return $ex->getMessage();
-            $this->log->logRequest(500, $ex->getMessage(), 'ERROR');
+            $this->log->logRequest(500, "Erro durante a consulta de personagens: " . $ex->getMessage(), 'ERROR');
         }
     }
+
     public function filmDetail($id)
     {
         try {
+            $title = "Detalhes do filme";
             $filmDetails = $this->serviceApi->getMovie($id);
-            $message = "Consulta do filme ".$filmDetails['title'] . " realizada com sucesso!";
 
-            // Insere um registro no log no banco de dados
+            $starships = $this->getStarships($this->extractIds($filmDetails['starships'], false));
+            $planets = $this->getPlanets($this->extractIds2($filmDetails['planets']));
+            $species = $this->getSpecie($this->extractIds2($filmDetails['species'], true));
+
+            $message = "Consulta do filme " . $filmDetails['title'] . " realizada com sucesso!";
+
             $query = "INSERT INTO logs (description, status, date) VALUES (:desc, :stts, :dt)";
             $params = [
                 ':desc' => $message,
                 ':stts' => "success",
                 ':dt' => date('Y-m-d H:i:s')
             ];
+
+            // Iniciar a transação apenas antes de manipular o banco de dados
             $this->connection->beginTransaction();
             $this->connection->query($query, $params);
             $this->log->logRequest(200, $message, 'INFO');
-            $characters = $filmDetails['characters'];
-            $releaseDate = new \DateTime($filmDetails['release_date']);
-            $currentDate = new \DateTime();
-            $interval = $releaseDate->diff($currentDate);
-            $filmAge = [
-                'years' => $interval->y . " Anos",
-                'months' => $interval->m . " Meses",
-                'days' => $interval->d . " Dias",
-            ];
-            $original_date = $filmDetails['release_date'];
-            $dataFormatada = \DateTime::createFromFormat('Y-m-d', $original_date)->format('d/m/Y');
 
-
-            $filmAge = implode(',', $filmAge);
-            $characters = $this->extractIds($characters);
+            $characters = $this->extractIds($filmDetails['characters']);
             $characteresNames = json_decode($this->characteresFilm($characters, $filmDetails['title']));
             $formatedNames = implode(', ', $characteresNames);
 
+            $releaseDate = new \DateTime($filmDetails['release_date']);
+            $currentDate = new \DateTime();
+            $interval = $releaseDate->diff($currentDate);
+
+            $filmAge = implode(', ', [
+                $interval->y . " Anos",
+                $interval->m . " Meses",
+                $interval->d . " Dias"
+            ]);
+
+            $dataFormatada = $releaseDate->format('d/m/Y');
+
             $filteredData = [
-                "title" => $filmDetails["title"], // Título do filme
-                "description" => $filmDetails["opening_crawl"], // Descrição (abertura)
-                "release_date" => $dataFormatada, // Data de lançamento
-                "director" => $filmDetails["director"], // Diretor
-                "producer" => $filmDetails["producer"], // Produtor
-                "episode_id" => $filmDetails["episode_id"], // ID do episódio
+                "title" => $filmDetails["title"],
+                "description" => $filmDetails["opening_crawl"],
+                "release_date" => $dataFormatada,
+                "director" => $filmDetails["director"],
+                "producer" => $filmDetails["producer"],
+                "episode_id" => $filmDetails["episode_id"],
                 'characters' => $formatedNames,
-                'filmAge' => $filmAge
-
-
+                'filmAge' => $filmAge,
+                'starships' => $starships,
+                'planets' => $planets,
+                'species' => $species
             ];
+
             $this->connection->commit();
-           
-        } 
-        
-        catch (\Exception $ex) {
-            $return = ['message'=> $ex->getMessage(), 'code'=>$ex->getCode()];
+        } catch (\Exception $ex) {
             $this->connection->rollback();
-            $this->log->logRequest(500,"Falha ao se conectar com a base", 'ERROR');
-           
-            echo $return;
+            $this->log->logRequest(500, $ex->getMessage(), 'ERROR');
+            echo json_encode(['message' => $ex->getMessage(), 'code' => $ex->getCode()]);
         }
 
         require_once __DIR__ . '/../Views/filmDetail.php';
@@ -218,8 +242,8 @@ class FilmController
                 'years' => $interval->y,
                 'months' => $interval->m,
                 'days' => $interval->d,
-            ];  
-            
+            ];
+
             return json_encode([
                 'status' => 'success',
                 'data' => $filmAge
@@ -236,5 +260,28 @@ class FilmController
     {
         $d = \DateTime::createFromFormat('Y-m-d', $date);
         return $d && $d->format('Y-m-d') === $date;
+    }
+    public function getStarships(array $ids)
+    {
+        $starships = [];
+        foreach ($ids as $id)
+            array_push($starships, $this->serviceApi->getStarship($id)['starship_class']);
+        return ($starships);
+    }
+    public function getPlanets($ids)
+    {
+        $planets = [];
+        foreach ($ids as $id) {
+            array_push($planets, $this->serviceApi->getPlanet($id)['name']);
+        }
+        return $planets;
+    }
+    function getSpecie(array $ids)
+    {
+        $species = [];
+        foreach ($ids as $id)
+            array_push($species, $this->serviceApi->getSpecie($id)['name']);
+
+        return $species;
     }
 }

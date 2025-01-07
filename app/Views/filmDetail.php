@@ -36,17 +36,17 @@ $nameEp = '/starwars/public/imgs/films/ep' . $filteredData['episode_id'] . '.jpg
         </div>
       </div>
       <div class="col-lg-12 mb-2 mt-2 p-2">
-        <h2 class='h2 text-warning text-center mt-4  p-3'> Mais informações</h1>
+        <h2 class='h2 text-warning text-center mt-4  p-3'> more informations  </h1>
 
       </div>
       <!-- Seção de Veículos -->
       <div class="col-lg-12">
         <div class="list-section">
-          <h2 class="text-warning h2 text-center">Aeronaves</h2>
-          <ul class="d-flex justify-content-center list-inline">
-            <li class="list-inline-item text-white">Veículo 1</li>
-            <li class="list-inline-item text-white">Veículo 2</li>
-            <li class="list-inline-item text-white">Veículo 3</li>
+          <h2 class="text-warning h2 text-center">aircrafts</h2>
+          <ul class="d-flex flex-wrap justify-content-center list-inline">
+            <?php foreach($filteredData['starships'] as $starship) {?>
+            <li class="list-inline-item text-white"><?php echo $starship ?></li>
+            <?php } ?>
           </ul>
         </div>
       </div>
@@ -54,11 +54,22 @@ $nameEp = '/starwars/public/imgs/films/ep' . $filteredData['episode_id'] . '.jpg
       <!-- Seção de Planetas -->
       <div class="col-lg-12">
         <div class="list-section">
-          <h2 class="text-warning h2 text-center">Planetas</h2>
-          <ul class="d-flex justify-content-center list-inline">
-            <li class="list-inline-item text-white">Planeta 1</li>
-            <li class="list-inline-item text-white">Planeta 2</li>
-            <li class="list-inline-item text-white">Planeta 3</li>
+          <h2 class="text-warning h2 text-center">Planets</h2>
+          <ul class="d-flex flex-wrap justify-content-center list-inline">
+          <?php foreach($filteredData['planets'] as $planet) {?>
+            <li class="list-inline-item text-white"><?php echo $planet ?></li>
+            <?php } ?>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-12">
+        <div class="list-section">
+          <h2 class="text-warning h2 text-center ">Species</h2>
+          <ul class="d-flex flex-wrap justify-content-center list-inline ">
+          <?php foreach($filteredData['species'] as $specie) {?>
+            <li class="list-inline-item text-white"><?php echo $specie ?></li>
+            <?php } ?>
           </ul>
         </div>
       </div>
@@ -92,7 +103,7 @@ $nameEp = '/starwars/public/imgs/films/ep' . $filteredData['episode_id'] . '.jpg
   .list-section {
   padding: 20px;
   background: linear-gradient(to top, #696969, #000); /* Gradiente de azul escuro para azul claro */
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .list-section h2 {
@@ -105,10 +116,17 @@ $nameEp = '/starwars/public/imgs/films/ep' . $filteredData['episode_id'] . '.jpg
   padding-left: 0;
   margin: 0;
 }
+.list-inline{
+  width: 100%;
+}
 
 .list-section .list-inline-item {
   font-size: 0.9rem;
-  margin: 0 15px;
+  margin: 0 15px ;
+  margin-bottom: 10px;
+}
+.d-flex.flex-wrap {
+  gap: 10px; /* Adiciona espaço entre os itens */
 }
 
 .list-section .text-white {

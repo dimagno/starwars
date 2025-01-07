@@ -15,6 +15,7 @@ Use App\Services\ApiService;
     }
 
     public function index(){
+        $title= "Home";
         $homeModel = new Home();
         $data = $homeModel->getInfo();
         $data = compact('data');

@@ -91,4 +91,13 @@ class ApiService
     {
         return $this->fetchData('planets/' . $id);
     }
+    public function getStarship($id){
+        return $this->fetchData('starships/'.$id);
+    }
+    public function getAllStarships($id){
+        return $this->fetchData('starships/'.$id);
+    }
+    public function getSpecie($id){
+        return $this->fetchData('species/'.$id); 
+    }
 }
