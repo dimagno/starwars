@@ -21,12 +21,12 @@ Este é um projeto desenvolvido para consumir dados da API Star Wars e exibi-los
 
 ## Configurando banco de dados
 1. Crie um arquivo .env na raiz do seu projeto com as seguintes configurações:
-   
+     ```bash
    DB_USER='root'
    DB_HOST=127.0.0.1
    DB_NAME=sw
    DB_PASS=''
-   
+     ```
 3. crie uma base de dados com o nome definido em DB_NAME (no caso, sw).
 4. Na pasta /database/dump, você encontrará um arquivo SQL para importar no seu banco de dados.
 5. Importe o dump utilizando o seguinte comando:  mysql -u root -p sw < /caminho/do/dump.sql
