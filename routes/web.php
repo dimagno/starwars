@@ -8,6 +8,7 @@ return [
     //Rotas para testes de retorno da API interna
     '/starwars/api/filmes'=>['App\Controllers\HomeController', 'getAllMovies'],
     '/starwars/api/filme/{id}'=>['App\Controllers\HomeController', 'getFilm'],
+    // chamadas da api feita via ajax
     '/starwars/api/peoples' =>['App\Controllers\FilmController', 'getPeoples'],
     '/starwars/api/starships'=>['App\Controllers\FilmController', 'getShips'],
     '/starwars/api/planets'=>['App\Controllers\FilmController', 'getPlanet'],

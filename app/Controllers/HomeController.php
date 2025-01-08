@@ -24,6 +24,7 @@ Use App\Services\ApiService;
     }
     public function sobre(){
         //echo "VIEW 'SOBRE' EM DESENVOLVIMENTO";
+        $title = "Sobre";
         require_once __DIR__.'/../Views/sobre.php';
      
  }

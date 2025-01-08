@@ -1,4 +1,10 @@
 $(document).ready(function(){
+    $('html, body').animate({
+        scrollTop: 500
+      }, {
+        duration: 2000,
+        easing: 'easeOutQuad' // Certifique-se de que a função de easing está disponível no jQuery UI
+      });
     
     let stars = $('.stars');
     let moon = $('.moon');

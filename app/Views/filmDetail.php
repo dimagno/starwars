@@ -21,80 +21,86 @@ $nameEp = '/starwars/public/imgs/films/ep' . $filteredData['episode_id'] . '.jpg
         <div class="con1">
           <span class='text-warning'>DESCRIPTION</span>
           <p class="p fs-6 fw-light border-bottom p-2"><?php echo $filteredData['description'] ?></p>
+        </div>
+        <div class="con1">
+          <span class='text-warning'> DIRECTOR:</span>
+          <p class='p fs-6 fw-light text-left border-bottom p-2'><?php echo $filteredData['director'] ?></p>
+        </div>
 
-          <div class="con1">
-            <span class='text-warning'> DIRECTOR:</span>
-            <p class='p fs-6 fw-light text-left border-bottom p-2'><?php echo $filteredData['director'] ?></p>
-          </div>
+        <div class="con1">
+          <span class='text-warning'> PRODUCER:</span>
+          <p class='p fs-6 fw-light text-left border-bottom p-2'><?php echo $filteredData['producer'] ?></p>
+        </div>
 
-          <div class="con1">
-            <span class='text-warning'> PRODUCER:</span>
-            <p class='p fs-6 fw-light text-left border-bottom p-2'><?php echo $filteredData['producer'] ?></p>
-          </div>
-
-          <div class="con1 border-bottom">
-            <span class='text-warning'> CHARACTERES:</span>
-            <p class='p fs-6 fw-light text-left  p-2' id='characters'>
+        <div class="con1 border-bottom">
+          <span class='text-warning'> CHARACTERES:</span>
+          <p class='p fs-6 fw-light text-left  p-2' id='characters'>
             <li id="loadingIcon" class="list-inline-item text-white">
-        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        Carregando...
-    </li>
-            </p>
-          </div>
-          <div class="con1">
-            <span class='text-warning'> RELEASE DATE:</span>
-            <p class='p fs-6 fw-light text-left border-bottom p-2'><?php echo $filteredData['release_date'] . ' (' . $filteredData['filmAge'] . '.)' ?></p>
-          </div>
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Carregando...
+            </li>
+          </p>
         </div>
-        <button class="btn btn-primary position-absolute bottom-0 start-0 mb-3 ms-3" onclick="history.back();">
-          Voltar
-        </button>
+        <div class="con1">
+          <span class='text-warning'>EPISODE Number</span>
+          <p class="p fs-6 fw-light border-bottom p-2"><?php echo $filteredData['episode_id'] ?></p>
+        </div>
+        
+        <div class="con1">
+          <span class='text-warning'> RELEASE DATE:</span>
+          <p class='p fs-6 fw-light text-left border-bottom p-2'><?php echo $filteredData['release_date'] . ' (' . $filteredData['filmAge'] . '.)' ?></p>
+        </div>
+        <button class="btn btn-secondary position-absolute bottom-0 start-0 mb-3 ms-3 text-white" onclick="history.back();">
+        Voltar
+      </button>
       </div>
+    
+    </div>
 
-      <div class="col-lg-12 mb-2 mt-2 p-2">
-        <h2 class='h2 text-warning text-center mt-4  p-3'> more informations </h1>
+    <div class="col-lg-12 mb-2 mt-2 p-2">
+      <h2 class='h2 text-warning text-center mt-4  p-3'> more informations </h1>
 
-      </div>
-      <!-- Seção de Veículos -->
-      <div class="col-lg-12">
-        <div class="list-section">
-          <h2 class="text-warning h2 text-center">aircrafts</h2>
-          <ul class="d-flex flex-wrap justify-content-center list-inline " id="listNaves">
+    </div>
+    <!-- Seção de Veículos -->
+    <div class="col-lg-12">
+      <div class="list-section">
+        <h2 class="text-warning h2 text-center">aircrafts</h2>
+        <ul class="d-flex flex-wrap justify-content-center list-inline " id="listNaves">
           <li id="loadingIcon3" class="list-inline-item text-white">
-        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        Carregando...
-    </li>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Carregando...
+          </li>
 
-          </ul>
-        </div>
+        </ul>
       </div>
+    </div>
 
-      <!-- Seção de Planetas -->
-      <div class="col-lg-12">
-        <div class="list-section">
-          <h2 class="text-warning h2 text-center">Planets</h2>
-          <ul class="d-flex flex-wrap justify-content-center list-inline" id="planets">
+    <!-- Seção de Planetas -->
+    <div class="col-lg-12">
+      <div class="list-section">
+        <h2 class="text-warning h2 text-center">Planets</h2>
+        <ul class="d-flex flex-wrap justify-content-center list-inline" id="planets">
           <li id="loadingIcon" class="list-inline-item text-white">
-        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        Carregando...
-    </li>
-          </ul>
-        </div>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Carregando...
+          </li>
+        </ul>
       </div>
+    </div>
 
-      <div class="col-lg-12">
-        <div class="list-section">
-          <h2 class="text-warning h2 text-center ">Species</h2>
-          <ul class="d-flex flex-wrap justify-content-center list-inline " id="species">
+    <div class="col-lg-12">
+      <div class="list-section">
+        <h2 class="text-warning h2 text-center ">Species</h2>
+        <ul class="d-flex flex-wrap justify-content-center list-inline " id="species">
           <li id="loadingIcon3" class="list-inline-item text-white">
-        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-        Carregando...
-    </li>
-          </ul>
-        </div>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Carregando...
+          </li>
+        </ul>
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <?php include "layout/footer.php" ?>
@@ -171,7 +177,7 @@ $nameEp = '/starwars/public/imgs/films/ep' . $filteredData['episode_id'] . '.jpg
 <script>
   $(document).ready(function() {
     $('#loadingIcon').hide();
-      
+
     let epId = $('#episode_id').val();
     console.log(epId)
 
@@ -223,15 +229,15 @@ $nameEp = '/starwars/public/imgs/films/ep' . $filteredData['episode_id'] . '.jpg
       data: {
         'episode_id': $('#episode_id').val()
       },
-     
+
 
     }).done(function(e) {
       let data = JSON.parse(e)
-    
+
       console.log("Planets " + e)
       $('#loadingIcon2').hide();
-      
-      
+
+
       $('#planets').html(data)
 
     }).fail(function(error) {
