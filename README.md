@@ -37,13 +37,12 @@ Este é um projeto desenvolvido para consumir dados da API Star Wars e exibi-los
 
 ## Arquivos de log:
 1. Os logs serão salvos na pasta logs como arquivos de texto simples. Verifique api_logs.txt para ver detalhes de erros e consultas feitas à API.
- ## Execução:
-1. para executar o projeto basta acessar no navegador, com servidor web e mysql ligado. ex: localhost/starwars
 
 ## funcionalidades
 1. Catálogo de filmes: Exibe a lista de filmes ordenados por data de lançamento.
 2. Detalhes do filme: Ao clicar em um filme, são exibidos detalhes como título, episódio, sinopse, data de lançamento, diretor(a), produtores e personagens.
 3.Logs de Interação: Cada interação com a API do Star Wars gera um log no banco de dados e no arquivo de log.
+
 
    
 Esse arquivo contém todas as instruções necessárias para instalação e execução do projeto, além de dar uma visão geral das funcionalidades. Se precisar de mais alguma informação ou ajustes, me avise!!
