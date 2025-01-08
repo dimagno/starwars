@@ -1,8 +1,9 @@
 <?php include "layout/header.php" ?>
-<div class="row container-fluid">
+<div class="row container-fluid div-table">
     <h1 class="h1 text-center text-warning">visualizar registro de atividadas da APi</h1>
+    <p class="text-white text-center">Aqui você pode filtrar os registros por qualquer um dos campos,por status, data ou nome do filme</p>
     <table id="example" class="table table-dark table-striped table-bordered border border-secondary border-1">
-        <thead >
+        <thead>
             <tr>
                 <th class="text-warning">status</th>
                 <th class="text-warning">mensagem</th>
@@ -30,15 +31,41 @@
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <?php include "layout/footer.php" ?>
 <script>
-    $(document).ready(function(){
-        $('#exemple').hide()
-        $('#example').DataTable({
-        "pageLength": 15,
-    });
+    $(document).ready(function() {
+        $('.div-table').hide()
+        async function getPassword() {
+            const {
+                value: password
+            } = await Swal.fire({
+                title: "Digite a senha de administrador para visualizar os logs",
+                input: "password",
+                inputLabel: "Senha:",
+                inputPlaceholder: "Digite a senha",
+                inputAttributes: {
+                    maxlength: "10",
+                    autocapitalize: "off",
+                    autocorrect: "off"
+                }
+            });
 
+            if (password != "1234") {
+                Swal.fire(`Senha incorreta`);
+                setTimeout(function() {
+                    window.location.href = '/starwars';
+                }, 2000);
+            } else {
+                // 3000 milissegundos = 3 segundos
+                $('.div-table').fadeIn('slow')
+
+            }
+        }
+
+        getPassword();
+        $('#example').DataTable({
+            "pageLength": 15,
+        });
 
     })
- 
 </script>
 <style>
     .dataTables_filter label,
@@ -56,7 +83,14 @@
         border: 1px solid #495057;
         /* Cor do borda */
     }
-    .h1{
+    .dataTables_length label select option{
+        background-color:white;
+
+    }
+    #example_info{
+        color:white;
+    }
+    .h1 {
         font-family: 'StarJedi';
     }
 </style>

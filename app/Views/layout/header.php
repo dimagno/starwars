@@ -29,7 +29,7 @@
                     <a class="  notranslate" href="<?php echo BASE_URL . 'starwars/filmes'; ?>">Films</a>
                 </li>
                 <li class="nav-item">
-                    <a class="  notranslate" href="#" id="logLink">Logs</a>
+                    <a class="  notranslate" href="/starwars/api/logs" id="logLink">Logs</a>
                 </li>
                 <li class="nav-item">
                     <a class="  notranslate" href="<?php echo BASE_URL . 'starwars/sobre'; ?>">Documentation</a>
