@@ -1,4 +1,31 @@
 $(document).ready(function(){
+    $('#logLink').click(function(){
+        async function getPassword() {
+            const { value: password } = await Swal.fire({
+              title: "Digite a senha de administrador para visualizar os logs",
+              input: "password",
+              inputLabel: "Senha:",
+              inputPlaceholder: "Digite a senha",
+              inputAttributes: {
+                maxlength: "10",
+                autocapitalize: "off",
+                autocorrect: "off"
+              }
+            });
+            
+            if (password!="1234") {
+              Swal.fire(`Senha incorreta`);
+            }
+            else{
+                setTimeout(function() {
+                    window.location.href = '/starwars';
+                  }, 2000); // 3000 milissegundos = 3 segundos
+
+            }
+          }
+          getPassword(); 
+         
+    })
     $('html, body').animate({
         scrollTop: 500
       }, {

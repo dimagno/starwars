@@ -176,6 +176,18 @@ $nameEp = '/starwars/public/imgs/films/ep' . $filteredData['episode_id'] . '.jpg
 </style>
 <script>
   $(document).ready(function() {
+    const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+  
     $('#loadingIcon').hide();
 
     let epId = $('#episode_id').val();
@@ -193,6 +205,10 @@ $nameEp = '/starwars/public/imgs/films/ep' . $filteredData['episode_id'] . '.jpg
       }
 
     }).done(function(e) {
+      Toast.fire({
+                    icon: "success",
+                    title: "Consulta de personagens realizada com sucesso!"
+                });
       // console.log("data"+e)
       $('#loadingIcon').hide();
       let data = JSON.parse(e)
@@ -214,6 +230,10 @@ $nameEp = '/starwars/public/imgs/films/ep' . $filteredData['episode_id'] . '.jpg
       }
 
     }).done(function(e) {
+      Toast.fire({
+                    icon: "success",
+                    title: "Consulta de aeronaves realizada com sucesso!"
+                });
       $('#loadingIcon2').hide()
       let data = JSON.parse(e)
       $('#listNaves').html(data);
@@ -232,6 +252,10 @@ $nameEp = '/starwars/public/imgs/films/ep' . $filteredData['episode_id'] . '.jpg
 
 
     }).done(function(e) {
+      Toast.fire({
+                    icon: "success",
+                    title: "Consulta de planetas realizada com sucesso!"
+                });
       let data = JSON.parse(e)
 
       console.log("Planets " + e)
@@ -256,6 +280,10 @@ $nameEp = '/starwars/public/imgs/films/ep' . $filteredData['episode_id'] . '.jpg
       }
 
     }).done(function(e) {
+      Toast.fire({
+                    icon: "success",
+                    title: "Consulta de especies realizada com sucesso!"
+                });
       console.log("especies " + e)
       let data = JSON.parse(e)
       $('#species').html(data)

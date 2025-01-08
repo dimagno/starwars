@@ -62,20 +62,34 @@
     .single-galeria a {
         text-decoration: none;
     }
-
 </style>
 <script>
     $(document).ready(function() {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 2500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
         $.ajax({
                 url: '/starwars/ajax/filmes',
                 type: 'GET',
                 dataType: 'JSON'
             })
             .done(function(data) {
+                Toast.fire({
+                    icon: "success",
+                    title: "Consulta de filmes realizada com sucesso"
+                });
                 let newdata = Object.values(data);
                 if (newdata[0] != 'error') {
                     var filmsArray = Object.values(data['data'])
-                  
+
                     filmsArray.forEach(function(item) {
                         makeView(item)
                     })
@@ -113,9 +127,9 @@
     });
 
     function makeView(item) {
-        
-        let epCorrection = item.episode_id>3 ?item.episode_id-3:item.episode_id+3;
-        
+
+        let epCorrection = item.episode_id > 3 ? item.episode_id - 3 : item.episode_id + 3;
+
         var htmlContent = `
         <div class="single-galeria col-sm-12 col-lg-4 col-md-6 shadow shadow-lg border-1 border border-warning mb-2  pb-2 pt-2">
             <div class="d-flex flex-column align-items-center text-center">
