@@ -167,12 +167,7 @@ class FilmController
         try {
             $title = "Detalhes do filme";
             $filmDetails = $this->serviceApi->getMovie($id);
-
-            $starships = $this->getStarships($this->extractIds($filmDetails['starships'], false));
-            $planets = $this->getPlanets($this->extractIds2($filmDetails['planets']));
-            $species = $this->getSpecie($this->extractIds2($filmDetails['species'], true));
-
-            $message = "Consulta do filme " . $filmDetails['title'] . " realizada com sucesso!";
+        $message = "Consulta do filme " . $filmDetails['title'] . " realizada com sucesso!";
 
             $query = "INSERT INTO logs (description, status, date) VALUES (:desc, :stts, :dt)";
             $params = [
@@ -181,14 +176,9 @@ class FilmController
                 ':dt' => date('Y-m-d H:i:s')
             ];
 
-            // Iniciar a transação apenas antes de manipular o banco de dados
-            $this->connection->beginTransaction();
+           
             $this->connection->query($query, $params);
             $this->log->logRequest(200, $message, 'INFO');
-
-            $characters = $this->extractIds($filmDetails['characters']);
-            $characteresNames = json_decode($this->characteresFilm($characters, $filmDetails['title']));
-            $formatedNames = implode(', ', $characteresNames);
 
             $releaseDate = new \DateTime($filmDetails['release_date']);
             $currentDate = new \DateTime();
@@ -209,16 +199,9 @@ class FilmController
                 "director" => $filmDetails["director"],
                 "producer" => $filmDetails["producer"],
                 "episode_id" => $filmDetails["episode_id"],
-                'characters' => $formatedNames,
                 'filmAge' => $filmAge,
-                'starships' => $starships,
-                'planets' => $planets,
-                'species' => $species
-            ];
-
-            $this->connection->commit();
+                ];
         } catch (\Exception $ex) {
-            $this->connection->rollback();
             $this->log->logRequest(500, $ex->getMessage(), 'ERROR');
             echo json_encode(['message' => $ex->getMessage(), 'code' => $ex->getCode()]);
         }
@@ -284,4 +267,83 @@ class FilmController
 
         return $species;
     }
+    public function getPeoples()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['episode_id'])) {
+            $episode_id = $_GET['episode_id'];
+            $episode_id = ($episode_id > 3) ? $episode_id - 3 : $episode_id + 3;
+            $charactersList = $this->serviceApi->getMovie($episode_id)['characters'];
+            $ids = $this->extractIds($charactersList);
+            $stringNames = "";
+            foreach ($ids as $id) {
+                $stringNames .= $this->serviceApi->getCharacter($id)['name'] . ", ";
+            }
+            echo json_encode($stringNames);
+        } else {
+            echo "ERRO";
+        }
+    }
+    public function getShips()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['episode_id'])) {
+            $episode_id = $_GET['episode_id'];
+            $episode_id = ($episode_id > 3) ? $episode_id - 3 : $episode_id + 3;
+            $starships = $this->serviceApi->getMovie($episode_id)['starships'];
+            $starships = $this->extractIds($starships, false);
+
+
+            $stringNames = "";
+            $listItems = '';
+            $starships = $this->getStarships($starships);
+            foreach ($starships as $starship) {
+
+                $listItems .= '<li class="list-inline-item text-white">' . htmlspecialchars($starship) . '</li>';
+            }
+            echo json_encode($listItems);
+        } else {
+            echo "ERRO";
+        }
+    }
+    public function getPlanet(){
+         if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['episode_id'])) {
+            $episode_id = $_GET['episode_id'];
+            $episode_id = ($episode_id > 3) ? $episode_id - 3 : $episode_id + 3;
+            $planets = $this->serviceApi->getMovie($episode_id)['planets'];
+            $planets = $this->extractIds2($planets, false);
+
+
+            $listItems = '';
+            $planets = $this->getPlanets($planets);
+            foreach ($planets as $planets) {
+
+                $listItems .= '<li class="list-inline-item text-white">' . htmlspecialchars($planets) . '</li>';
+            }
+            echo json_encode($listItems);
+        } else {
+            echo "ERRO";
+        }
+    
+
+    }
+    public function getSpecies(){
+        if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['episode_id'])) {
+           $episode_id = $_GET['episode_id'];
+           $episode_id = ($episode_id > 3) ? $episode_id - 3 : $episode_id + 3;
+           $species= $this->serviceApi->getMovie($episode_id)['species'];
+           $species = $this->extractIds2($species, true);
+
+
+           $listItems = '';
+           $species = $this->getSpecie($species);
+           foreach ($species as $species) {
+
+               $listItems .= '<li class="list-inline-item text-white">' . htmlspecialchars($species) . '</li>';
+           }
+           echo json_encode($listItems);
+       } else {
+           echo "ERRO";
+       }
+   
+
+   }
 }

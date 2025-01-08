@@ -117,7 +117,7 @@
         let epCorrection = item.episode_id>3 ?item.episode_id-3:item.episode_id+3;
         
         var htmlContent = `
-        <div class="single-galeria col-sm-4 shadow shadow-lg border-1 border border-warning mb-2  pb-2 pt-2">
+        <div class="single-galeria col-sm-12 col-lg-4 col-md-6 shadow shadow-lg border-1 border border-warning mb-2  pb-2 pt-2">
             <div class="d-flex flex-column align-items-center text-center">
                 <img src="public/imgs/films/ep${item.episode_id}.jpg" class="img-fluid" alt="${item.title}">
                 <div class="info">
