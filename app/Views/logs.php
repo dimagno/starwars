@@ -1,11 +1,12 @@
 <?php include "layout/header.php" ?>
 <div class="row container-fluid">
-    <table id="example" class="table table-dark table-striped table-bordered border border-1">
-        <thead>
+    <h1 class="h1 text-center text-warning">visualizar registro de atividadas da APi</h1>
+    <table id="example" class="table table-dark table-striped table-bordered border border-secondary border-1">
+        <thead >
             <tr>
-                <th>status</th>
-                <th>mensagem</th>
-                <th>data/hora</th>
+                <th class="text-warning">status</th>
+                <th class="text-warning">mensagem</th>
+                <th class="text-warning">data/hora</th>
             </tr>
         </thead>
         <tbody>
@@ -29,14 +30,20 @@
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <?php include "layout/footer.php" ?>
 <script>
-    $('#example').DataTable({
+    $(document).ready(function(){
+        $('#exemple').hide()
+        $('#example').DataTable({
         "pageLength": 15,
     });
+
+
+    })
+ 
 </script>
 <style>
     .dataTables_filter label,
     label {
-        color: #f8f9fa;
+        color: #856404;
         /* Cor clara para o label */
     }
 
@@ -48,5 +55,8 @@
         /* Cor clara para o texto */
         border: 1px solid #495057;
         /* Cor do borda */
+    }
+    .h1{
+        font-family: 'StarJedi';
     }
 </style>

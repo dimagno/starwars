@@ -49,8 +49,7 @@ class FilmController
                     ':dt' => date('Y-m-d H:i:s')
                 ];
                 $this->connection->execute($query, $params);
-                $this->log->logRequest(200, 'Consulta da lista de filmes Realizada com sucesso', 'INFO');
-
+               
                 // Confirma a transação
                 $this->connection->commit();
 

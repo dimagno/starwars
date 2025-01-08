@@ -55,6 +55,7 @@ use app\Database\Connection;
 
  }
  public function getLogs(){
+    $title = "Registro de atividades";
 
     $sql= "SELECT * FROM logs";
     $result = $this->connection->query($sql);

@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function(){ /*
     $('#logLink').click(function(){
         async function getPassword() {
             const { value: password } = await Swal.fire({
@@ -25,7 +25,7 @@ $(document).ready(function(){
           }
           getPassword(); 
          
-    })
+    }) */
     $('html, body').animate({
         scrollTop: 500
       }, {
