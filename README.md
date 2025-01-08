@@ -28,7 +28,7 @@ Este é um projeto desenvolvido para consumir dados da API Star Wars e exibi-los
    DB_PASS=''
      ```
 3. crie uma base de dados com o nome definido em DB_NAME (no caso, sw).
-4. Na pasta /database/dump, você encontrará um arquivo SQL para importar no seu banco de dados.
+4. Na pasta app/database/dump, você encontrará um arquivo SQL para importar no seu banco de dados.
 5. Importe o dump utilizando o seguinte comando:  mysql -u root -p sw < /caminho/do/dump.sql
 
 ## configuração  do servidor
