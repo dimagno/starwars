@@ -46,4 +46,4 @@ Este é um projeto desenvolvido para consumir dados da API Star Wars e exibi-los
 3.Logs de Interação: Cada interação com a API do Star Wars gera um log no banco de dados e no arquivo de log.
 
    
-Esse arquivo contém todas as instruções necessárias para instalação e execução do projeto, além de dar uma visão geral das funcionalidades. Se precisar de mais alguma informação ou ajustes, me avise!
+Esse arquivo contém todas as instruções necessárias para instalação e execução do projeto, além de dar uma visão geral das funcionalidades. Se precisar de mais alguma informação ou ajustes, me avise!!
