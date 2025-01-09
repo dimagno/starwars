@@ -25,7 +25,7 @@ class FilmController
     {
         try {
 
-            // Inicia uma transação
+            // verifica se há  uma transação
             if ($this->connection->isConnected()) {
 
 
@@ -49,7 +49,7 @@ class FilmController
                     ':dt' => date('Y-m-d H:i:s')
                 ];
                 $this->connection->execute($query, $params);
-               
+
                 // Confirma a transação
                 $this->connection->commit();
 
@@ -71,7 +71,7 @@ class FilmController
 
                 // Ordena os filmes pela data de lançamento
                 usort($filteredData, function ($a, $b) {
-                    return strtotime($a['episode_id']) - strtotime($b['episode_id']);
+                    return strtotime($a['release_date']) - strtotime($b['release_date']);
                 });
 
                 // Registra a solicitação no log
@@ -166,7 +166,7 @@ class FilmController
         try {
             $title = "Detalhes do filme";
             $filmDetails = $this->serviceApi->getMovie($id);
-        $message = "Consulta do filme " . $filmDetails['title'] . " realizada com sucesso!";
+            $message = "Consulta do filme " . $filmDetails['title'] . " realizada com sucesso!";
 
             $query = "INSERT INTO logs (description, status, date) VALUES (:desc, :stts, :dt)";
             $params = [
@@ -175,7 +175,7 @@ class FilmController
                 ':dt' => date('Y-m-d H:i:s')
             ];
 
-           
+
             $this->connection->query($query, $params);
             $this->log->logRequest(200, $message, 'INFO');
 
@@ -199,7 +199,7 @@ class FilmController
                 "producer" => $filmDetails["producer"],
                 "episode_id" => $filmDetails["episode_id"],
                 'filmAge' => $filmAge,
-                ];
+            ];
         } catch (\Exception $ex) {
             $this->log->logRequest(500, $ex->getMessage(), 'ERROR');
             echo json_encode(['message' => $ex->getMessage(), 'code' => $ex->getCode()]);
@@ -303,8 +303,9 @@ class FilmController
             echo "ERRO";
         }
     }
-    public function getPlanet(){
-         if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['episode_id'])) {
+    public function getPlanet()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['episode_id'])) {
             $episode_id = $_GET['episode_id'];
             $episode_id = ($episode_id > 3) ? $episode_id - 3 : $episode_id + 3;
             $planets = $this->serviceApi->getMovie($episode_id)['planets'];
@@ -321,28 +322,25 @@ class FilmController
         } else {
             echo "ERRO";
         }
-    
-
     }
-    public function getSpecies(){
+    public function getSpecies()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['episode_id'])) {
-           $episode_id = $_GET['episode_id'];
-           $episode_id = ($episode_id > 3) ? $episode_id - 3 : $episode_id + 3;
-           $species= $this->serviceApi->getMovie($episode_id)['species'];
-           $species = $this->extractIds2($species, true);
+            $episode_id = $_GET['episode_id'];
+            $episode_id = ($episode_id > 3) ? $episode_id - 3 : $episode_id + 3;
+            $species = $this->serviceApi->getMovie($episode_id)['species'];
+            $species = $this->extractIds2($species, true);
 
 
-           $listItems = '';
-           $species = $this->getSpecie($species);
-           foreach ($species as $species) {
+            $listItems = '';
+            $species = $this->getSpecie($species);
+            foreach ($species as $species) {
 
-               $listItems .= '<li class="list-inline-item text-white">' . htmlspecialchars($species) . '</li>';
-           }
-           echo json_encode($listItems);
-       } else {
-           echo "ERRO";
-       }
-   
-
-   }
+                $listItems .= '<li class="list-inline-item text-white">' . htmlspecialchars($species) . '</li>';
+            }
+            echo json_encode($listItems);
+        } else {
+            echo "ERRO";
+        }
+    }
 }
