@@ -42,11 +42,11 @@ Este é um projeto desenvolvido para consumir dados da API Star Wars e exibi-los
 1. Catálogo de filmes: Exibe a lista de filmes ordenados por data de lançamento.
 2. Detalhes do filme: Ao clicar em um filme, são exibidos detalhes como título, episódio, sinopse, data de lançamento, diretor(a), produtores e personagens.
 3.Logs de Interação: Cada interação com a API do Star Wars gera um log no banco de dados e no arquivo de log.
-4. Pagina de visualização dos logs. a senha para visualizar é:
+4. Pagina de visualização dos logs, com filtros adicionais para consulta de todos os campo A senha para visualizar a página é:
  ```bash
  1234
    ```
-###
+### Considerações finais
 
 
    
