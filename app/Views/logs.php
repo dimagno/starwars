@@ -1,7 +1,7 @@
 <?php include "layout/header.php" ?>
 <div class="row container-fluid div-table">
     <h1 class="h1 text-center text-warning">visualizar registro de atividadas da APi</h1>
-    <p class="text-white text-center">Aqui você pode filtrar os registros por qualquer um dos campos,por status, data ou nome do filme</p>
+    <p class="text-white text-center">Aqui você pode filtrar os registros por qualquer um dos campos, como status, data ou nome do filme</p>
     <table id="example" class="table table-dark table-striped table-bordered border border-secondary border-rounded rounded  border-1">
         <thead>
             <tr>
