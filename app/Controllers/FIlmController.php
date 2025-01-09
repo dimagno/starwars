@@ -139,7 +139,6 @@ class FilmController
     }
 
 
-    // Endpoint para obter os detalhes de um filme
 
     function characteresFilm(array $characters, $film)
     {
@@ -327,6 +326,10 @@ class FilmController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['episode_id'])) {
             $episode_id = $_GET['episode_id'];
+            // a api retorna o episódio com base na ordem de lançamento e n por episodio
+            // se  buscar pela id do filme 1, retornará o primeiro filme lançado que corresponde ao ep 4
+            // foi ajustado o `episode_id` para mapear corretamente os episódios, somando 3 para os episódios 1-3
+            // e subtraindo 3 para os episódios 4-6, já que a API não inclui episódios VII a IX.
             $episode_id = ($episode_id > 3) ? $episode_id - 3 : $episode_id + 3;
             $species = $this->serviceApi->getMovie($episode_id)['species'];
             $species = $this->extractIds2($species, true);
